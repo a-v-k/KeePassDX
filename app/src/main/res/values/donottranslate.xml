@@ -25,7 +25,7 @@
     *******************
     -->
 
-    <string name="app_name" translatable="false">KeePassDX</string>
+    <string name="app_name" translatable="false">Contributor Pro</string>
     <string name="app_name_part1" translatable="false">KeePass</string>
     <string name="app_name_part2" translatable="false">DX</string>
     <string name="app_name_part3" translatable="false">Pro</string>
