@@ -1,1 +1,0 @@
- * Hot fix to increase the opening speed of database #1028

@@ -1,1 +1,0 @@
- * Correction des parcelable avec données customisées #986

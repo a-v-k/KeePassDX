@@ -1,2 +1,0 @@
- * Downgrade to Android API 29 (crash on startup with API 30 on some devices)
- Sorry for the inconvenience

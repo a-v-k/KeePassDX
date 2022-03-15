@@ -1,1 +1,0 @@
-Secure and open source password manager compatible with KeePass files.

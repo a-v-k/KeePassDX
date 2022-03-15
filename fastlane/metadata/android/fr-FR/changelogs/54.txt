@@ -1,2 +1,0 @@
- * Tentative de résolution de l'autofill #852
- * Correction du dialogue de changement de base de données affiché trop souvent #853

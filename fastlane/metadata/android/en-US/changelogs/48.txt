@@ -1,2 +1,0 @@
- * Fix small bugs #812
- * Argon2ID implementation #791

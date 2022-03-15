@@ -1,2 +1,0 @@
- * Fix search fields references #987
- * Fix Auto-Types with same key #997

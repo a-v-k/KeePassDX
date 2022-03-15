@@ -1,2 +1,0 @@
- * Correction base de données en lecture seule
- * Mise à jour vers Android SDK 29
