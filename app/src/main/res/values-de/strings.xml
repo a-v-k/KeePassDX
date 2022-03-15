@@ -638,4 +638,15 @@
     <string name="content_description_nav_header">Navigationskopfzeile</string>
     <string name="navigation_drawer_close">Navigationsleiste schließen</string>
     <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
+
+    <string name="filesync_soon">(Demnächst, derzeit in Entwicklung)</string>
+
+    <string name="thank_you">Vielen Dank für Ihren Beitrag!</string>
+    <string name="thanks_to_you">Dank Ihnen können die Anwendungen gewartet werden und es werden regelmäßig neue Funktionen hinzugefügt.</string>
+    <string name="first_contribute">Sie sind ein Early Contributor und haben somit Zugang zu den Funktionen der neuen Open-Source-Apps von Kunzisoft, die in Zukunft bereitgestellt werden, also lassen Sie diese App installiert, um von den Vorteilen zu profitieren.</string>
+    <string name="content_unlock">Dieser Inhalt ist nun freigeschaltet:</string>
+
+    <string name="keepassdx_merge">Um die Benutzerfreundlichkeit weiter zu verbessern, werden KeePassDX und KeePassDX Pro in der gleichen KeePassDX-App zusammengeführt.\n\nNatürlich behalten Sie alle bereits erworbenen Vorteile, aber Sie müssen die KeePassDX-App erneut herunterladen, um Ihre Einstellungen wieder zu integrieren.</string>
+    <string name="keepassdx_migrate">Wie kann ich die Einstellungen migrieren?</string>
+    <string name="keepassdx_export_settings">Einstellungen exportieren</string>
 </resources>

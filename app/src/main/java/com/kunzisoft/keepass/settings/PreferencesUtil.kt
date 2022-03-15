@@ -594,6 +594,86 @@ object PreferencesUtil {
         }.apply()
     }
 
+    fun containsAppProperties(context: Context): Boolean {
+        var containsKeePassProperties = false
+        for ((name, _) in PreferenceManager.getDefaultSharedPreferences(context).all) {
+            containsKeePassProperties = when (name) {
+                context.getString(R.string.allow_no_password_key) -> true
+                context.getString(R.string.delete_entered_password_key) -> true
+                context.getString(R.string.enable_read_only_key) -> true
+                context.getString(R.string.enable_auto_save_database_key) -> true
+                context.getString(R.string.enable_keep_screen_on_key) -> true
+                context.getString(R.string.auto_focus_search_key) -> true
+                context.getString(R.string.subdomain_search_key) -> true
+                context.getString(R.string.app_timeout_key) -> true
+                context.getString(R.string.lock_database_screen_off_key) -> true
+                context.getString(R.string.lock_database_back_root_key) -> true
+                context.getString(R.string.lock_database_show_button_key) -> true
+                context.getString(R.string.password_length_key) -> true
+                context.getString(R.string.list_password_generator_options_key) -> true
+                context.getString(R.string.hide_password_key) -> true
+                context.getString(R.string.allow_copy_password_key) -> true
+                context.getString(R.string.remember_database_locations_key) -> true
+                context.getString(R.string.show_recent_files_key) -> true
+                context.getString(R.string.hide_broken_locations_key) -> true
+                context.getString(R.string.remember_keyfile_locations_key) -> true
+                context.getString(R.string.biometric_unlock_enable_key) -> true
+                context.getString(R.string.device_credential_unlock_enable_key) -> true
+                context.getString(R.string.biometric_auto_open_prompt_key) -> true
+                context.getString(R.string.temp_advanced_unlock_enable_key) -> true
+                context.getString(R.string.temp_advanced_unlock_timeout_key) -> true
+
+                context.getString(R.string.magic_keyboard_key) -> true
+                context.getString(R.string.clipboard_notifications_key) -> true
+                context.getString(R.string.clear_clipboard_notification_key) -> true
+                context.getString(R.string.clipboard_timeout_key) -> true
+                context.getString(R.string.settings_autofill_enable_key) -> true
+                context.getString(R.string.keyboard_notification_entry_key) -> true
+                context.getString(R.string.keyboard_notification_entry_clear_close_key) -> true
+                context.getString(R.string.keyboard_entry_timeout_key) -> true
+                context.getString(R.string.keyboard_selection_entry_key) -> true
+                context.getString(R.string.keyboard_search_share_key) -> true
+                context.getString(R.string.keyboard_save_search_info_key) -> true
+                context.getString(R.string.keyboard_auto_go_action_key) -> true
+                context.getString(R.string.keyboard_key_vibrate_key) -> true
+                context.getString(R.string.keyboard_key_sound_key) -> true
+                context.getString(R.string.keyboard_previous_database_credentials_key) -> true
+                context.getString(R.string.keyboard_previous_fill_in_key) -> true
+                context.getString(R.string.keyboard_previous_lock_key) -> true
+                context.getString(R.string.autofill_close_database_key) -> true
+                context.getString(R.string.autofill_auto_search_key) -> true
+                context.getString(R.string.autofill_inline_suggestions_key) -> true
+                context.getString(R.string.autofill_manual_selection_key) -> true
+                context.getString(R.string.autofill_save_search_info_key) -> true
+                context.getString(R.string.autofill_ask_to_save_data_key) -> true
+                context.getString(R.string.autofill_application_id_blocklist_key) -> true
+                context.getString(R.string.autofill_web_domain_blocklist_key) -> true
+
+                context.getString(R.string.setting_style_key) -> true
+                context.getString(R.string.setting_style_brightness_key) -> true
+                context.getString(R.string.setting_icon_pack_choose_key) -> true
+                context.getString(R.string.show_entry_colors_key) -> true
+                context.getString(R.string.list_entries_show_username_key) -> true
+                context.getString(R.string.list_groups_show_number_entries_key) -> true
+                context.getString(R.string.show_otp_token_key) -> true
+                context.getString(R.string.show_uuid_key) -> true
+                context.getString(R.string.list_size_key) -> true
+                context.getString(R.string.monospace_font_fields_enable_key) -> true
+                context.getString(R.string.hide_expired_entries_key) -> true
+                context.getString(R.string.enable_education_screens_key) -> true
+
+                context.getString(R.string.sort_node_key) -> true
+                context.getString(R.string.sort_group_before_key) -> true
+                context.getString(R.string.sort_ascending_key) -> true
+                context.getString(R.string.sort_recycle_bin_bottom_key) -> true
+                context.getString(R.string.allow_copy_password_first_time_key) -> true
+
+                else -> false
+            }
+        }
+        return containsKeePassProperties
+    }
+
     fun setAppProperties(context: Context, properties: Properties) {
         putPropertiesInPreferences(properties,
                 PreferenceManager.getDefaultSharedPreferences(context)) { editor, name, value ->

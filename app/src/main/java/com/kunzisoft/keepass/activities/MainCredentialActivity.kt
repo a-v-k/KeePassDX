@@ -34,9 +34,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -71,6 +73,7 @@ import com.kunzisoft.keepass.view.MainCredentialView
 import com.kunzisoft.keepass.view.asError
 import com.kunzisoft.keepass.viewmodels.AdvancedUnlockViewModel
 import com.kunzisoft.keepass.viewmodels.DatabaseFileViewModel
+import org.joda.time.DateTime
 import java.io.FileNotFoundException
 
 
@@ -107,96 +110,121 @@ class MainCredentialActivity : DatabaseModeActivity(), AdvancedUnlockFragment.Bu
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main_credential)
-
-        toolbar = findViewById(R.id.toolbar)
-        toolbar?.title = getString(R.string.app_name)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        filenameView = findViewById(R.id.filename)
-        mainCredentialView = findViewById(R.id.activity_password_credentials)
-        confirmButtonView = findViewById(R.id.activity_password_open_button)
-        infoContainerView = findViewById(R.id.activity_password_info_container)
-        coordinatorLayout = findViewById(R.id.activity_password_coordinator_layout)
-
-        mReadOnly = if (savedInstanceState != null && savedInstanceState.containsKey(KEY_READ_ONLY)) {
-            savedInstanceState.getBoolean(KEY_READ_ONLY)
+        if (!PreferencesUtil.containsAppProperties(this)) {
+            startActivity(Intent(this, ContributorActivity::class.java))
+            finish()
         } else {
-            PreferencesUtil.enableReadOnlyDatabase(this)
-        }
-        mRememberKeyFile = PreferencesUtil.rememberKeyFileLocations(this)
+            setContentView(R.layout.activity_main_credential)
 
-        mExternalFileHelper = ExternalFileHelper(this@MainCredentialActivity)
-        mExternalFileHelper?.buildOpenDocument { uri ->
-            if (uri != null) {
-                mainCredentialView?.populateKeyFileTextView(uri)
+            toolbar = findViewById(R.id.toolbar)
+            toolbar?.title = getString(R.string.app_name)
+            setSupportActionBar(toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowHomeEnabled(true)
+
+            filenameView = findViewById(R.id.filename)
+            mainCredentialView = findViewById(R.id.activity_password_credentials)
+            confirmButtonView = findViewById(R.id.activity_password_open_button)
+            infoContainerView = findViewById(R.id.activity_password_info_container)
+            coordinatorLayout = findViewById(R.id.activity_password_coordinator_layout)
+
+            mReadOnly =
+                if (savedInstanceState != null && savedInstanceState.containsKey(KEY_READ_ONLY)) {
+                    savedInstanceState.getBoolean(KEY_READ_ONLY)
+                } else {
+                    PreferencesUtil.enableReadOnlyDatabase(this)
+                }
+            mRememberKeyFile = PreferencesUtil.rememberKeyFileLocations(this)
+
+            mExternalFileHelper = ExternalFileHelper(this@MainCredentialActivity)
+            mExternalFileHelper?.buildOpenDocument { uri ->
+                if (uri != null) {
+                    mainCredentialView?.populateKeyFileTextView(uri)
+                }
             }
-        }
-        mainCredentialView?.setOpenKeyfileClickListener(mExternalFileHelper)
-        mainCredentialView?.onValidateListener = {
-            loadDatabase()
-        }
+            mainCredentialView?.setOpenKeyfileClickListener(mExternalFileHelper)
+            mainCredentialView?.onValidateListener = {
+                loadDatabase()
+            }
 
-        // If is a view intent
-        getUriFromIntent(intent)
+            // If is a view intent
+            getUriFromIntent(intent)
 
-        // Init Biometric elements
-        advancedUnlockFragment = supportFragmentManager
+            // Init Biometric elements
+            advancedUnlockFragment = supportFragmentManager
                 .findFragmentByTag(UNLOCK_FRAGMENT_TAG) as? AdvancedUnlockFragment?
-        if (advancedUnlockFragment == null) {
-            advancedUnlockFragment = AdvancedUnlockFragment()
-            supportFragmentManager.commit {
-                replace(R.id.fragment_advanced_unlock_container_view,
+            if (advancedUnlockFragment == null) {
+                advancedUnlockFragment = AdvancedUnlockFragment()
+                supportFragmentManager.commit {
+                    replace(
+                        R.id.fragment_advanced_unlock_container_view,
                         advancedUnlockFragment!!,
-                        UNLOCK_FRAGMENT_TAG)
-            }
-        }
-
-        // Listen password checkbox to init advanced unlock and confirmation button
-        mainCredentialView?.onPasswordChecked =
-            CompoundButton.OnCheckedChangeListener { _, _ ->
-                mAdvancedUnlockViewModel.checkUnlockAvailability()
-                enableConfirmationButton()
+                        UNLOCK_FRAGMENT_TAG
+                    )
+                }
             }
 
-        // Observe if default database
-        mDatabaseFileViewModel.isDefaultDatabase.observe(this) { isDefaultDatabase ->
-            mDefaultDatabase = isDefaultDatabase
-        }
+            // Listen password checkbox to init advanced unlock and confirmation button
+            mainCredentialView?.onPasswordChecked =
+                CompoundButton.OnCheckedChangeListener { _, _ ->
+                    mAdvancedUnlockViewModel.checkUnlockAvailability()
+                    enableConfirmationButton()
+                }
 
-        // Observe database file change
-        mDatabaseFileViewModel.databaseFileLoaded.observe(this) { databaseFile ->
-
-            // Force read only if the file does not exists
-            val databaseFileNotExists = databaseFile?.let {
-                !it.databaseFileExists
-            } ?: true
-            infoContainerView?.visibility = if (databaseFileNotExists) {
-                mReadOnly = true
-                View.VISIBLE
-            } else {
-                View.GONE
+            // Observe if default database
+            mDatabaseFileViewModel.isDefaultDatabase.observe(this) { isDefaultDatabase ->
+                mDefaultDatabase = isDefaultDatabase
             }
-            mForceReadOnly = databaseFileNotExists
 
-            invalidateOptionsMenu()
+            // Observe database file change
+            mDatabaseFileViewModel.databaseFileLoaded.observe(this) { databaseFile ->
 
-            // Post init uri with KeyFile only if needed
-            val databaseKeyFileUri = mainCredentialView?.getMainCredential()?.keyFileUri
-            val keyFileUri =
+                // Force read only if the file does not exists
+                val databaseFileNotExists = databaseFile?.let {
+                    !it.databaseFileExists
+                } ?: true
+                infoContainerView?.visibility = if (databaseFileNotExists) {
+                    mReadOnly = true
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
+                mForceReadOnly = databaseFileNotExists
+
+                invalidateOptionsMenu()
+
+                // Post init uri with KeyFile only if needed
+                val databaseKeyFileUri = mainCredentialView?.getMainCredential()?.keyFileUri
+                val keyFileUri =
                     if (mRememberKeyFile
-                            && (databaseKeyFileUri == null || databaseKeyFileUri.toString().isEmpty())) {
+                        && (databaseKeyFileUri == null || databaseKeyFileUri.toString().isEmpty())
+                    ) {
                         databaseFile?.keyFileUri
                     } else {
                         databaseKeyFileUri
                     }
 
-            // Define title
-            filenameView?.text = databaseFile?.databaseAlias ?: ""
+                // Define title
+                filenameView?.text = databaseFile?.databaseAlias ?: ""
 
-            onDatabaseFileLoaded(databaseFile?.databaseUri, keyFileUri)
+                onDatabaseFileLoaded(databaseFile?.databaseUri, keyFileUri)
+            }
+
+            // Dialog to show migration
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val migrationView = layoutInflater.inflate(R.layout.migration_layout, null)
+            builder.setView(migrationView)
+            migrationView.findViewById<View>(R.id.keepassdxButton).setOnClickListener {
+                UriUtil.openExternalApp(this, "com.kunzisoft.keepass.free")
+            }
+            migrationView.findViewById<View>(R.id.keepassdxHowExportSettings).setOnClickListener {
+                UriUtil.gotoUrl(
+                    this,
+                    "https://github.com/Kunzisoft/KeePassDX/wiki/Import-and-Export#app-properties"
+                )
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
     }
 

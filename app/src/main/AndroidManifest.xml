@@ -38,6 +38,9 @@
             android:name="com.google.android.backup.api_key"
             android:value="${googleAndroidBackupAPIKey}" />
         <activity
+            android:name=".activities.ContributorActivity"
+            android:exported="true" />
+        <activity
             android:name="com.kunzisoft.keepass.activities.FileDatabaseSelectActivity"
             android:theme="@style/KeepassDXStyle.SplashScreen"
             android:launchMode="singleTop"

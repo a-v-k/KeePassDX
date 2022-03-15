@@ -35,6 +35,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -63,6 +64,7 @@ import com.kunzisoft.keepass.services.DatabaseTaskNotificationService
 import com.kunzisoft.keepass.services.DatabaseTaskNotificationService.Companion.ACTION_DATABASE_CREATE_TASK
 import com.kunzisoft.keepass.services.DatabaseTaskNotificationService.Companion.ACTION_DATABASE_LOAD_TASK
 import com.kunzisoft.keepass.services.DatabaseTaskNotificationService.Companion.DATABASE_URI_KEY
+import com.kunzisoft.keepass.settings.AutofillSettingsActivity
 import com.kunzisoft.keepass.settings.PreferencesUtil
 import com.kunzisoft.keepass.tasks.ActionRunnable
 import com.kunzisoft.keepass.utils.*
@@ -100,129 +102,158 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Enabling/disabling MagikeyboardService is normally done by DexModeReceiver, but this
-        // additional check will allow the keyboard to be reenabled more easily if the app crashes
-        // or is force quit within DeX mode and then the user leaves DeX mode. Without this, the
-        // user would need to enter and exit DeX mode once to reenable the service.
-        MagikeyboardUtil.setEnabled(this, !DexUtil.isDexMode(resources.configuration))
+        if (!PreferencesUtil.containsAppProperties(this)) {
+            startActivity(Intent(this, ContributorActivity::class.java))
+            finish()
+        } else {
+            // Enabling/disabling MagikeyboardService is normally done by DexModeReceiver, but this
+            // additional check will allow the keyboard to be reenabled more easily if the app crashes
+            // or is force quit within DeX mode and then the user leaves DeX mode. Without this, the
+            // user would need to enter and exit DeX mode once to reenable the service.
+            MagikeyboardUtil.setEnabled(this, !DexUtil.isDexMode(resources.configuration))
 
-        mFileDatabaseHistoryAction = FileDatabaseHistoryAction.getInstance(applicationContext)
+            mFileDatabaseHistoryAction = FileDatabaseHistoryAction.getInstance(applicationContext)
 
-        setContentView(R.layout.activity_file_selection)
-        coordinatorLayout = findViewById(R.id.activity_file_selection_coordinator_layout)
+            setContentView(R.layout.activity_file_selection)
+            coordinatorLayout = findViewById(R.id.activity_file_selection_coordinator_layout)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = ""
-        setSupportActionBar(toolbar)
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            toolbar.title = ""
+            setSupportActionBar(toolbar)
 
-        // Special title
-        specialTitle = findViewById(R.id.file_selection_title_part_3)
+            // Special title
+            specialTitle = findViewById(R.id.file_selection_title_part_3)
 
-        // Create database button
-        createDatabaseButtonView = findViewById(R.id.create_database_button)
-        createDatabaseButtonView?.setOnClickListener { createNewFile() }
+            // Create database button
+            createDatabaseButtonView = findViewById(R.id.create_database_button)
+            createDatabaseButtonView?.setOnClickListener { createNewFile() }
 
-        // Open database button
-        mExternalFileHelper = ExternalFileHelper(this)
-        mExternalFileHelper?.buildOpenDocument { uri ->
-            uri?.let {
-                launchPasswordActivityWithPath(uri)
+            // Open database button
+            mExternalFileHelper = ExternalFileHelper(this)
+            mExternalFileHelper?.buildOpenDocument { uri ->
+                uri?.let {
+                    launchPasswordActivityWithPath(uri)
+                }
             }
-        }
-        mExternalFileHelper?.buildCreateDocument("application/x-keepass") { databaseFileCreatedUri ->
-            mDatabaseFileUri = databaseFileCreatedUri
-            if (mDatabaseFileUri != null) {
-                SetMainCredentialDialogFragment.getInstance(true)
-                    .show(supportFragmentManager, "passwordDialog")
-            } else {
-                val error = getString(R.string.error_create_database)
-                Snackbar.make(coordinatorLayout, error, Snackbar.LENGTH_LONG).asError().show()
-                Log.e(TAG, error)
+            mExternalFileHelper?.buildCreateDocument("application/x-keepass") { databaseFileCreatedUri ->
+                mDatabaseFileUri = databaseFileCreatedUri
+                if (mDatabaseFileUri != null) {
+                    SetMainCredentialDialogFragment.getInstance(true)
+                        .show(supportFragmentManager, "passwordDialog")
+                } else {
+                    val error = getString(R.string.error_create_database)
+                    Snackbar.make(coordinatorLayout, error, Snackbar.LENGTH_LONG).asError().show()
+                    Log.e(TAG, error)
+                }
             }
-        }
-        openDatabaseButtonView = findViewById(R.id.open_database_button)
-        openDatabaseButtonView?.setOpenDocumentClickListener(mExternalFileHelper)
+            openDatabaseButtonView = findViewById(R.id.open_database_button)
+            openDatabaseButtonView?.setOpenDocumentClickListener(mExternalFileHelper)
 
-        // History list
-        val fileDatabaseHistoryRecyclerView = findViewById<RecyclerView>(R.id.file_list)
-        fileDatabaseHistoryRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        // Removes blinks
-        (fileDatabaseHistoryRecyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-        // Construct adapter with listeners
-        mAdapterDatabaseHistory = FileDatabaseHistoryAdapter(this)
-        mAdapterDatabaseHistory?.setOnDefaultDatabaseListener { databaseFile ->
-            databaseFilesViewModel.setDefaultDatabase(databaseFile)
-        }
-        mAdapterDatabaseHistory?.setOnFileDatabaseHistoryOpenListener { fileDatabaseHistoryEntityToOpen ->
-            fileDatabaseHistoryEntityToOpen.databaseUri?.let { databaseFileUri ->
-                launchPasswordActivity(
+            // History list
+            val fileDatabaseHistoryRecyclerView = findViewById<RecyclerView>(R.id.file_list)
+            fileDatabaseHistoryRecyclerView.layoutManager =
+                LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+            // Removes blinks
+            (fileDatabaseHistoryRecyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
+                false
+            // Construct adapter with listeners
+            mAdapterDatabaseHistory = FileDatabaseHistoryAdapter(this)
+            mAdapterDatabaseHistory?.setOnDefaultDatabaseListener { databaseFile ->
+                databaseFilesViewModel.setDefaultDatabase(databaseFile)
+            }
+            mAdapterDatabaseHistory?.setOnFileDatabaseHistoryOpenListener { fileDatabaseHistoryEntityToOpen ->
+                fileDatabaseHistoryEntityToOpen.databaseUri?.let { databaseFileUri ->
+                    launchPasswordActivity(
                         databaseFileUri,
                         fileDatabaseHistoryEntityToOpen.keyFileUri
+                    )
+                }
+            }
+            mAdapterDatabaseHistory?.setOnFileDatabaseHistoryDeleteListener { fileDatabaseHistoryToDelete ->
+                databaseFilesViewModel.deleteDatabaseFile(fileDatabaseHistoryToDelete)
+                true
+            }
+            mAdapterDatabaseHistory?.setOnSaveAliasListener { fileDatabaseHistoryWithNewAlias ->
+                // Update in app database
+                databaseFilesViewModel.updateDatabaseFile(fileDatabaseHistoryWithNewAlias)
+            }
+            fileDatabaseHistoryRecyclerView.adapter = mAdapterDatabaseHistory
+
+            // Load default database if not an orientation change
+            if (!(savedInstanceState != null
+                        && savedInstanceState.containsKey(EXTRA_STAY)
+                        && savedInstanceState.getBoolean(EXTRA_STAY, false))
+            ) {
+                val databasePath = PreferencesUtil.getDefaultDatabasePath(this)
+
+                UriUtil.parse(databasePath)?.let { databaseFileUri ->
+                    launchPasswordActivityWithPath(databaseFileUri)
+                } ?: run {
+                    Log.i(TAG, "No default database to prepare")
+                }
+            }
+
+            // Retrieve the database URI provided by file manager after an orientation change
+            if (savedInstanceState != null
+                && savedInstanceState.containsKey(EXTRA_DATABASE_URI)
+            ) {
+                mDatabaseFileUri = savedInstanceState.getParcelable(EXTRA_DATABASE_URI)
+            }
+
+            // Observe list of databases
+            databaseFilesViewModel.databaseFilesLoaded.observe(this) { databaseFiles ->
+                try {
+                    when (databaseFiles.databaseFileAction) {
+                        DatabaseFilesViewModel.DatabaseFileAction.NONE -> {
+                            mAdapterDatabaseHistory?.replaceAllDatabaseFileHistoryList(databaseFiles.databaseFileList)
+                        }
+                        DatabaseFilesViewModel.DatabaseFileAction.ADD -> {
+                            databaseFiles.databaseFileToActivate?.let { databaseFileToAdd ->
+                                mAdapterDatabaseHistory?.addDatabaseFileHistory(databaseFileToAdd)
+                            }
+                        }
+                        DatabaseFilesViewModel.DatabaseFileAction.UPDATE -> {
+                            databaseFiles.databaseFileToActivate?.let { databaseFileToUpdate ->
+                                mAdapterDatabaseHistory?.updateDatabaseFileHistory(
+                                    databaseFileToUpdate
+                                )
+                            }
+                        }
+                        DatabaseFilesViewModel.DatabaseFileAction.DELETE -> {
+                            databaseFiles.databaseFileToActivate?.let { databaseFileToDelete ->
+                                mAdapterDatabaseHistory?.deleteDatabaseFileHistory(
+                                    databaseFileToDelete
+                                )
+                            }
+                        }
+                    }
+                    databaseFilesViewModel.consumeAction()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Unable to observe database action", e)
+                }
+            }
+
+            // Observe default database
+            databaseFilesViewModel.defaultDatabase.observe(this) {
+                // Retrieve settings for default database
+                mAdapterDatabaseHistory?.setDefaultDatabase(it)
+            }
+
+            // Dialog to show migration
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val migrationView = layoutInflater.inflate(R.layout.migration_layout, null)
+            builder.setView(migrationView)
+            migrationView.findViewById<View>(R.id.keepassdxButton).setOnClickListener {
+                UriUtil.openExternalApp(this, "com.kunzisoft.keepass.free")
+            }
+            migrationView.findViewById<View>(R.id.keepassdxHowExportSettings).setOnClickListener {
+                UriUtil.gotoUrl(
+                    this,
+                    "https://github.com/Kunzisoft/KeePassDX/wiki/Import-and-Export#app-properties"
                 )
             }
-        }
-        mAdapterDatabaseHistory?.setOnFileDatabaseHistoryDeleteListener { fileDatabaseHistoryToDelete ->
-            databaseFilesViewModel.deleteDatabaseFile(fileDatabaseHistoryToDelete)
-            true
-        }
-        mAdapterDatabaseHistory?.setOnSaveAliasListener { fileDatabaseHistoryWithNewAlias ->
-            // Update in app database
-            databaseFilesViewModel.updateDatabaseFile(fileDatabaseHistoryWithNewAlias)
-        }
-        fileDatabaseHistoryRecyclerView.adapter = mAdapterDatabaseHistory
-
-        // Load default database if not an orientation change
-        if (!(savedInstanceState != null
-                        && savedInstanceState.containsKey(EXTRA_STAY)
-                        && savedInstanceState.getBoolean(EXTRA_STAY, false))) {
-            val databasePath = PreferencesUtil.getDefaultDatabasePath(this)
-
-            UriUtil.parse(databasePath)?.let { databaseFileUri ->
-                launchPasswordActivityWithPath(databaseFileUri)
-            } ?: run {
-                Log.i(TAG, "No default database to prepare")
-            }
-        }
-
-        // Retrieve the database URI provided by file manager after an orientation change
-        if (savedInstanceState != null
-                && savedInstanceState.containsKey(EXTRA_DATABASE_URI)) {
-            mDatabaseFileUri = savedInstanceState.getParcelable(EXTRA_DATABASE_URI)
-        }
-
-        // Observe list of databases
-        databaseFilesViewModel.databaseFilesLoaded.observe(this) { databaseFiles ->
-            try {
-                when (databaseFiles.databaseFileAction) {
-                    DatabaseFilesViewModel.DatabaseFileAction.NONE -> {
-                        mAdapterDatabaseHistory?.replaceAllDatabaseFileHistoryList(databaseFiles.databaseFileList)
-                    }
-                    DatabaseFilesViewModel.DatabaseFileAction.ADD -> {
-                        databaseFiles.databaseFileToActivate?.let { databaseFileToAdd ->
-                            mAdapterDatabaseHistory?.addDatabaseFileHistory(databaseFileToAdd)
-                        }
-                    }
-                    DatabaseFilesViewModel.DatabaseFileAction.UPDATE -> {
-                        databaseFiles.databaseFileToActivate?.let { databaseFileToUpdate ->
-                            mAdapterDatabaseHistory?.updateDatabaseFileHistory(databaseFileToUpdate)
-                        }
-                    }
-                    DatabaseFilesViewModel.DatabaseFileAction.DELETE -> {
-                        databaseFiles.databaseFileToActivate?.let { databaseFileToDelete ->
-                            mAdapterDatabaseHistory?.deleteDatabaseFileHistory(databaseFileToDelete)
-                        }
-                    }
-                }
-                databaseFilesViewModel.consumeAction()
-            } catch (e: Exception) {
-                Log.e(TAG, "Unable to observe database action", e)
-            }
-        }
-
-        // Observe default database
-        databaseFilesViewModel.defaultDatabase.observe(this) {
-            // Retrieve settings for default database
-            mAdapterDatabaseHistory?.setDefaultDatabase(it)
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
     }
 

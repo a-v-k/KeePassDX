@@ -658,4 +658,18 @@
     <string name="show_entry_colors_summary">Displays foreground and background colors in an entry</string>
     <string name="hide_expired_entries_title">Hide expired entries</string>
     <string name="hide_expired_entries_summary">Expired entries are not shown</string>
+
+
+    <string name="keepassdx" translatable="false">KeePassDX Pro</string>
+    <string name="filesync" translatable="false">FileSync Pro</string>
+    <string name="filesync_soon">(Coming soon, currently in development)</string>
+
+    <string name="thank_you">Thank you for your contribution!</string>
+    <string name="thanks_to_you">Thanks to you, applications can be maintained and features are added regularly.</string>
+    <string name="first_contribute">You\'re an early contributor, so you will have access to the features of the new open source Kunzisoft apps that will be deployed in the future, so keep this app installed to enjoy your benefits.</string>
+    <string name="content_unlock">This content is now unlocked:</string>
+
+    <string name="keepassdx_merge">To further improve the user experience, KeePassDX and KeePassDX Pro are merging into the same KeePassDX app and this app becomes a contributing app.\n\nOf course, you keep all the advantages already acquired, but you have to re-download the KeePassDX app to reintegrate your settings.</string>
+    <string name="keepassdx_migrate">How do I migrate settings?</string>
+    <string name="keepassdx_export_settings">Export Settings</string>
 </resources>

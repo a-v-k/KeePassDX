@@ -636,4 +636,15 @@
     <string name="custom_data">Données personnalisées</string>
     <string name="case_sensitive">Sensible à la casse</string>
     <string name="expired">Expiré</string>
+
+    <string name="filesync_soon">(A venir, actuellement en cours de développement)</string>
+
+    <string name="thank_you">Merci pour votre contribution !</string>
+    <string name="thanks_to_you">Grâce à vous, les applications peuvent être maintenues et des fonctionnalités sont ajoutées régulièrement.</string>
+    <string name="first_contribute">Vous êtes dans les premiers contributeurs, vous aurez donc accès aux fonctionnalités des nouvelles applications Kunzisoft open source qui seront déployées à l\'avenir, alors gardez cette application installée pour profiter de vos avantages.</string>
+    <string name="content_unlock">Ce contenu est maintenant déverrouillé :</string>
+
+    <string name="keepassdx_merge">Pour améliorer encore l\'expérience utilisateur, KeePassDX et KeePassDX Pro fusionnent en une seule et même application KeePassDX et cette application devient une application contributive.\n\nBien sûr, vous conservez tous les avantages déjà acquis, mais vous devez retélécharger l\'application KeePassDX pour réintégrer vos paramètres.</string>
+    <string name="keepassdx_migrate">Comment faire pour migrer les paramètres ?</string>
+    <string name="keepassdx_export_settings">Exportation des paramètres</string>
 </resources>
