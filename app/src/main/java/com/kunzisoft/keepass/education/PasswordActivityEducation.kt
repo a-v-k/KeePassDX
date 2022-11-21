@@ -24,7 +24,7 @@ import androidx.core.content.ContextCompat
 import android.view.View
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class PasswordActivityEducation(activity: Activity)
     : Education(activity) {

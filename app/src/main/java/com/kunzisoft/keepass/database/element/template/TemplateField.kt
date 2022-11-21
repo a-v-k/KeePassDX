@@ -19,7 +19,7 @@
 package com.kunzisoft.keepass.database.element.template
 
 import android.content.Context
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 object TemplateField {
 

@@ -27,7 +27,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.utils.ObjectNameResource
 
 import java.util.ArrayList

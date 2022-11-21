@@ -25,7 +25,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import androidx.appcompat.app.AlertDialog
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.Attachment
 
 /**

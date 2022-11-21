@@ -36,7 +36,7 @@ import androidx.biometric.BiometricManager.Authenticators.*
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.app.database.CipherDatabaseAction
 import com.kunzisoft.keepass.settings.PreferencesUtil
 import java.security.KeyStore

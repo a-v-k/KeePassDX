@@ -35,7 +35,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.stylish.StylishFragment
 import com.kunzisoft.keepass.app.database.CipherDatabaseAction
 import com.kunzisoft.keepass.database.exception.IODatabaseException

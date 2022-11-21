@@ -29,7 +29,7 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceDialogFragmentCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 abstract class InputPreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
 

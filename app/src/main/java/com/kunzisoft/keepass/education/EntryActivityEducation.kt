@@ -23,7 +23,7 @@ import android.app.Activity
 import android.view.View
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 
 class EntryActivityEducation(activity: Activity)

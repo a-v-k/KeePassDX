@@ -26,7 +26,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 /**
  * Custom Dialog to confirm big file to upload

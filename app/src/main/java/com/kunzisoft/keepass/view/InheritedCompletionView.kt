@@ -5,7 +5,7 @@ import android.text.InputType
 import android.util.AttributeSet
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class InheritedCompletionView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null

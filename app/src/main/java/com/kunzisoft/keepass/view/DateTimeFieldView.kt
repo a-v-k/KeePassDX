@@ -29,7 +29,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.DateInstant
 
 class DateTimeFieldView @JvmOverloads constructor(context: Context,

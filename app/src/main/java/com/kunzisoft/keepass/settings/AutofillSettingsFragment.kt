@@ -25,7 +25,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.settings.preferencedialogfragment.AutofillBlocklistAppIdPreferenceDialogFragmentCompat
 import com.kunzisoft.keepass.settings.preferencedialogfragment.AutofillBlocklistWebDomainPreferenceDialogFragmentCompat
 

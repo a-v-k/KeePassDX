@@ -25,7 +25,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.widget.Button
 import android.widget.TextView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.utils.UriUtil
 
 class FileManagerDialogFragment : DialogFragment() {

@@ -23,7 +23,7 @@ import android.content.Context
 import androidx.preference.DialogPreference
 import android.util.AttributeSet
 
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class DialogListExplanationPreference @JvmOverloads constructor(context: Context,
                                                                 attrs: AttributeSet? = null,

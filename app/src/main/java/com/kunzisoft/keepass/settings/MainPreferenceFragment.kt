@@ -25,7 +25,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.viewmodels.DatabaseViewModel
 
 class MainPreferenceFragment : PreferenceFragmentCompat() {

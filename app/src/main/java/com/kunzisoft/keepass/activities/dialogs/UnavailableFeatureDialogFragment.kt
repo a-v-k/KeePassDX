@@ -28,7 +28,7 @@ import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class UnavailableFeatureDialogFragment : DialogFragment() {
     private var minVersionRequired = Build.VERSION_CODES.M

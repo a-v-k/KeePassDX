@@ -26,8 +26,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 import androidx.fragment.app.DialogFragment
-import com.kunzisoft.keepass.BuildConfig
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.BuildConfig
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.utils.UriUtil
 
 /**

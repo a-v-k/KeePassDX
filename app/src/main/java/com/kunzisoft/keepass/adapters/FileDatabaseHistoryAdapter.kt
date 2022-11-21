@@ -32,7 +32,7 @@ import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SortedList
 import androidx.recyclerview.widget.SortedListAdapterCallback
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.model.DatabaseFile
 import com.kunzisoft.keepass.view.collapse
 import com.kunzisoft.keepass.view.expand

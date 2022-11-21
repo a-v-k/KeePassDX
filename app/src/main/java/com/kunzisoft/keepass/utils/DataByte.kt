@@ -21,7 +21,7 @@ package com.kunzisoft.keepass.utils
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class DataByte(var number: Long, var format: ByteFormat) {
 

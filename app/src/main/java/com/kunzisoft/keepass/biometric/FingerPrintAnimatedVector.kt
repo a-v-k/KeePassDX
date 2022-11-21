@@ -27,7 +27,7 @@ import android.widget.ImageView
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 class FingerPrintAnimatedVector(context: Context, imageView: ImageView) {

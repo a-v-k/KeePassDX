@@ -19,7 +19,7 @@
  */
 package com.kunzisoft.keepass.activities.fragments
 
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.Database
 import com.kunzisoft.keepass.database.element.icon.IconImageStandard
 

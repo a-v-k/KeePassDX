@@ -27,7 +27,7 @@ import android.util.Log
 import androidx.preference.PreferenceManager
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 open class Education(val activity: Activity) {
 

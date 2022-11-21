@@ -9,7 +9,7 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.view.isVisible
 import com.google.android.material.navigation.NavigationView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class NavigationDatabaseView @JvmOverloads constructor(context: Context,
                                                        attrs: AttributeSet? = null,

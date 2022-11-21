@@ -25,7 +25,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.Tags
 
 class TagsAdapter(context: Context) : RecyclerView.Adapter<TagsAdapter.TagViewHolder>() {

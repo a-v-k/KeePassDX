@@ -26,8 +26,8 @@ import android.content.res.Resources
 import android.net.Uri
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.kunzisoft.keepass.BuildConfig
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.BuildConfig
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.stylish.Stylish
 import com.kunzisoft.keepass.biometric.AdvancedUnlockManager
 import com.kunzisoft.keepass.database.element.SortNodeEnum

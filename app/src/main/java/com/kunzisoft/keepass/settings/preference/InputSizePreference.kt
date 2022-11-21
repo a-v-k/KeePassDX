@@ -21,7 +21,7 @@ package com.kunzisoft.keepass.settings.preference
 
 import android.content.Context
 import android.util.AttributeSet
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.utils.DataByte
 
 open class InputSizePreference @JvmOverloads constructor(context: Context,

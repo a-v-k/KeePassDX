@@ -35,8 +35,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.SwitchPreference
-import com.kunzisoft.keepass.BuildConfig
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.BuildConfig
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.dialogs.ProFeatureDialogFragment
 import com.kunzisoft.keepass.activities.dialogs.UnavailableFeatureDialogFragment
 import com.kunzisoft.keepass.activities.stylish.Stylish

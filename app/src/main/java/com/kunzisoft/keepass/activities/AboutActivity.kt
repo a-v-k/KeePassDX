@@ -27,8 +27,8 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.text.HtmlCompat
-import com.kunzisoft.keepass.BuildConfig
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.BuildConfig
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.stylish.StylishActivity
 import org.joda.time.DateTime
 

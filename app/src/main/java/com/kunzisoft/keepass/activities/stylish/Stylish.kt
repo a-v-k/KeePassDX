@@ -23,7 +23,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
 import androidx.annotation.StyleRes
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.settings.PreferencesUtil
 
 /**

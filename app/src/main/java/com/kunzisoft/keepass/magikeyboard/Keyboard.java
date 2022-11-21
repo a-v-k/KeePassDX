@@ -27,7 +27,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.util.Xml;
 
-import com.kunzisoft.keepass.R;
+import org.digicraft.keepass.R;
 
 import org.xmlpull.v1.XmlPullParserException;
 

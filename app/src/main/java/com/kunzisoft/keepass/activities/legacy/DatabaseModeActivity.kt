@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.helpers.EntrySelectionHelper
 import com.kunzisoft.keepass.activities.helpers.SpecialMode
 import com.kunzisoft.keepass.activities.helpers.TypeMode

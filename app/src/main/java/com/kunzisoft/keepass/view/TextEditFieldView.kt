@@ -18,7 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class TextEditFieldView @JvmOverloads constructor(context: Context,
                                                   attrs: AttributeSet? = null,

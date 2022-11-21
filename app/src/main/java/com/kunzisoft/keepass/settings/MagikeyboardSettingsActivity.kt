@@ -23,7 +23,7 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.legacy.DatabaseModeActivity
 
 class MagikeyboardSettingsActivity : DatabaseModeActivity() {

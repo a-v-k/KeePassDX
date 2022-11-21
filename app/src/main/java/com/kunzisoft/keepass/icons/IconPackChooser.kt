@@ -21,7 +21,7 @@ package com.kunzisoft.keepass.icons
 
 import android.content.Context
 import android.util.Log
-import com.kunzisoft.keepass.BuildConfig
+import org.digicraft.keepass.BuildConfig
 import com.kunzisoft.keepass.settings.PreferencesUtil
 import java.util.*
 

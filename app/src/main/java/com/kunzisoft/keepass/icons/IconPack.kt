@@ -21,7 +21,7 @@ package com.kunzisoft.keepass.icons
 
 import android.content.res.Resources
 import android.util.SparseIntArray
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import java.text.DecimalFormat
 import java.util.*
 

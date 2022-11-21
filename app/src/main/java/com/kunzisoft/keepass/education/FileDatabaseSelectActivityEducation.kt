@@ -25,7 +25,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class FileDatabaseSelectActivityEducation(activity: Activity)
     : Education(activity) {

@@ -30,7 +30,7 @@ import android.text.util.Linkify
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.exception.ClipboardException
 import com.kunzisoft.keepass.settings.PreferencesUtil
 import java.util.*

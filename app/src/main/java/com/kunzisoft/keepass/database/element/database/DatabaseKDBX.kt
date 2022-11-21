@@ -23,7 +23,7 @@ import android.content.res.Resources
 import android.util.Base64
 import android.util.Log
 import com.kunzisoft.encrypt.HashManager
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.action.node.NodeHandler
 import com.kunzisoft.keepass.database.crypto.EncryptionAlgorithm
 import com.kunzisoft.keepass.database.crypto.VariantDictionary

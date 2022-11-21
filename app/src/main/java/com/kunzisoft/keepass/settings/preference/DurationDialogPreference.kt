@@ -23,7 +23,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.preference.DialogPreference
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class DurationDialogPreference @JvmOverloads constructor(context: Context,
                                                          attrs: AttributeSet? = null,

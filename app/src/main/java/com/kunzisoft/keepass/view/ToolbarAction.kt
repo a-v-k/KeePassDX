@@ -33,7 +33,7 @@ import androidx.appcompat.view.ActionMode
 import androidx.appcompat.view.SupportMenuInflater
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class ToolbarAction @JvmOverloads constructor(context: Context,
                                               attrs: AttributeSet? = null,

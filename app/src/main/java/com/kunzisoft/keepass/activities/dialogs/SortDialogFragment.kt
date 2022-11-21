@@ -27,7 +27,7 @@ import android.widget.CompoundButton
 import android.widget.RadioGroup
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.SortNodeEnum
 
 class SortDialogFragment : DatabaseDialogFragment() {

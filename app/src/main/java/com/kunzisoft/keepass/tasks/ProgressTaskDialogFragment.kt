@@ -29,7 +29,7 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import java.lang.Exception
 
 open class ProgressTaskDialogFragment : DialogFragment(), ProgressTaskUpdater {

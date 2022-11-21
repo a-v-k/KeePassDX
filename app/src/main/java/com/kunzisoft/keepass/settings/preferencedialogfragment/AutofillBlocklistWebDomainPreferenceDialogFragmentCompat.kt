@@ -20,7 +20,7 @@
 package com.kunzisoft.keepass.settings.preferencedialogfragment
 
 import android.os.Bundle
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.model.SearchInfo
 
 class AutofillBlocklistWebDomainPreferenceDialogFragmentCompat

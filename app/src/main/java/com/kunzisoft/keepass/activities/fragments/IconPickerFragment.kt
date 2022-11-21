@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.adapters.IconPickerPagerAdapter
 import com.kunzisoft.keepass.database.element.Database
 import com.kunzisoft.keepass.viewmodels.IconPickerViewModel

@@ -21,7 +21,7 @@ package com.kunzisoft.keepass.database.exception
 
 import android.content.res.Resources
 import androidx.annotation.StringRes
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.node.NodeId
 import com.kunzisoft.keepass.database.element.node.Type
 

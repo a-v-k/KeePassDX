@@ -28,7 +28,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class SpecialModeView @JvmOverloads constructor(context: Context,
                                                 attrs: AttributeSet? = null,

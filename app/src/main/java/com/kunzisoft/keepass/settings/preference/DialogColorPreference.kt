@@ -25,7 +25,7 @@ import android.util.AttributeSet
 import androidx.annotation.ColorInt
 import com.kunzisoft.androidclearchroma.ChromaPreferenceCompat
 
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class DialogColorPreference @JvmOverloads constructor(context: Context,
                                                       attrs: AttributeSet? = null,

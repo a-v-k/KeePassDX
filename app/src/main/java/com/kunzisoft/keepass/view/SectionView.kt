@@ -26,7 +26,7 @@ import android.widget.LinearLayout
 import androidx.annotation.IdRes
 import androidx.cardview.widget.CardView
 import androidx.core.view.setPadding
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 
 class SectionView @JvmOverloads constructor(context: Context,
                                             attrs: AttributeSet? = null,

@@ -49,7 +49,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
-import com.kunzisoft.keepass.R;
+import org.digicraft.keepass.R;
 import com.kunzisoft.keepass.magikeyboard.Keyboard.Key;
 
 import java.util.Arrays;

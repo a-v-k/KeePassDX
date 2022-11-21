@@ -35,7 +35,7 @@ import com.kunzisoft.androidclearchroma.colormode.ColorMode
 import com.kunzisoft.androidclearchroma.fragment.ChromaColorFragment
 import com.kunzisoft.androidclearchroma.fragment.ChromaColorFragment.*
 import com.kunzisoft.androidclearchroma.view.ChromaColorView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.dialogs.ColorPickerDialogFragment
 import com.kunzisoft.keepass.database.element.Database
 

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.database.element.Tags
 import com.tokenautocomplete.CharacterTokenizer
 import com.tokenautocomplete.TokenCompleteTextView

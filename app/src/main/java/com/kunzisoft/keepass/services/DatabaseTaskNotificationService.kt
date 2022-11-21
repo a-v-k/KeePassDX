@@ -28,7 +28,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.media.app.NotificationCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.GroupActivity
 import com.kunzisoft.keepass.database.action.*
 import com.kunzisoft.keepass.database.action.history.DeleteEntryHistoryDatabaseRunnable

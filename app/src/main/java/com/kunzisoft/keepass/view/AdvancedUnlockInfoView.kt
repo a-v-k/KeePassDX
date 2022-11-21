@@ -29,7 +29,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.biometric.FingerPrintAnimatedVector
 
 @RequiresApi(api = Build.VERSION_CODES.M)

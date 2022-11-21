@@ -20,7 +20,7 @@
 package com.kunzisoft.keepass.password
 
 import android.content.res.Resources
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import java.security.SecureRandom
 
 class PasswordGenerator(private val resources: Resources) {

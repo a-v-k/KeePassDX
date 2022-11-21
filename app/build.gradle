@@ -9,14 +9,14 @@ android {
     ndkVersion "21.4.7075529"
 
     defaultConfig {
-        applicationId "com.digicraft.keepass"
+        applicationId "org.digicraft.keepass"
         minSdkVersion 15
         targetSdkVersion 31
         versionCode = 104
         versionName = "3.3.2"
         multiDexEnabled true
 
-        testApplicationId = "com.digicraft.keepass.tests"
+        testApplicationId = "org.digicraft.keepass.tests"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String[]", "ICON_PACKS", "{\"classic\",\"material\"}"

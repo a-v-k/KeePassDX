@@ -8,7 +8,7 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import com.kunzisoft.androidclearchroma.view.ChromaColorView
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.viewmodels.ColorPickerViewModel
 
 class ColorPickerDialogFragment : DatabaseDialogFragment() {

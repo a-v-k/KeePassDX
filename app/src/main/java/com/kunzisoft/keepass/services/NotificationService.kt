@@ -9,7 +9,7 @@ import android.os.IBinder
 import android.util.TypedValue
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.kunzisoft.keepass.R
+import org.digicraft.keepass.R
 import com.kunzisoft.keepass.activities.stylish.Stylish
 import kotlinx.coroutines.*
 
